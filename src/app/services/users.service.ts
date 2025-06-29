@@ -47,7 +47,7 @@ export class UsersService {
 
   async createUser(user: User): Promise<User> {
     try {
-      // Intentar crear en el servidor
+      // Intentar crear en el servidor (simulación) entrará seguro al catch , el endpoint simulado es db.json con json-server ;)
       const newUser = await firstValueFrom(this.http.post<User>(this.url, user));
       return newUser;
     } catch {

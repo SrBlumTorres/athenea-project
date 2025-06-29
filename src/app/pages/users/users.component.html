@@ -1,5 +1,24 @@
-<section class="listing">
-    <h2 class="listing-heading">{{ user.id }}</h2>
-    <p class="listing-location">{{ user.name }}, {{ user.surname }}</p>
-    <a [routerLink]="['/profile', user.id]">Learn More</a>
-  </section>
+<div id="userListView" class="table-container">
+  <table>
+      <thead>
+          <tr>
+              <th>id</th>
+              <th>email</th>
+              <th>nom</th>
+              <th>Cognom</th>
+              <th>accions</th>
+          </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <tr>
+          <td class="user-id">{{ user.id }}</td>
+          <td class="user-name">{{ user.name }}</td>
+          <td class="user-surname">{{ user.surname }}</td>
+          <td class="user-email">{{ user.email }}</td>
+          <td class="user-actions">
+            <a [routerLink]="['/profile', user.id]">Perfil</a>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
