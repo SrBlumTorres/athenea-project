@@ -10,7 +10,7 @@ export const routes: Routes = [
     title: 'Home'
   },
   {
-    path: 'profile:id',
+    path: 'profile/:id',
     component: UserProfileComponent,
     title: 'User Profile'
   },
