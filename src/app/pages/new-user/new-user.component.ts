@@ -8,21 +8,7 @@ import { User } from '../../models/user';
   selector: 'app-new-user',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: `<form [formGroup]="applyForm" (submit)="createUser()">
-    <label for="id">Id</label>
-    <input id="id" type="text" formControlName="id" />
-
-    <label for="email">Email</label>
-    <input id="email" type="email" formControlName="email" />
-
-    <label for="name">Name</label>
-    <input id="name" type="text" formControlName="name" />
-
-    <label for="surname">Surname</label>
-    <input id="surname" type="text" formControlName="surname" />
-
-    <button type="submit" class="primary">Create user</button>
-  </form>`,
+  templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
 export class NewUserComponent {

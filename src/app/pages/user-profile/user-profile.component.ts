@@ -8,16 +8,7 @@ import { User } from '../../models/user';
   selector: 'app-user-profile',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <article>
-      <section class="listing-description">
-        <h2 class="listing-heading">{{ user?.id }}</h2>
-        <p class="listing-location">
-          {{ user?.name  }}, {{ user?.surname  }}
-        </p>
-      </section>
-    </article>
-  `,
+  templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {

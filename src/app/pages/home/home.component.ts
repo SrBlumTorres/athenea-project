@@ -8,17 +8,7 @@ import { UsersService } from '../../services/users.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, UsersComponent],
-  template: `
-    <section>
-      <form>
-        <input type="text" placeholder="Filter by city" />
-        <button class="primary" type="button">Search</button>
-      </form>
-    </section>
-    <section class="results">
-      <app-users *ngFor="let user of usersList" [user]="user"> </app-users>
-    </section>
-  `,
+  templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {

@@ -7,11 +7,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   selector: 'app-users',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
-  template: ` <section class="listing">
-    <h2 class="listing-heading">{{ user.id }}</h2>
-    <p class="listing-location">{{ user.name }}, {{ user.surname }}</p>
-    <a [routerLink]="['/profile', user.id]">Learn More</a>
-  </section>`,
+  templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
