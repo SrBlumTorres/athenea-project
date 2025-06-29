@@ -59,4 +59,9 @@ export class UsersService {
   getUserById(id: string): User | undefined {
     return this.usersList.find((user) => user.id === id);
   }
+
+  // In this case we reuse model, other case dto
+  createUser(user: User) { 
+    console.log(`New user: id: ${user.id}, email: ${user.email}, name: ${user.name}, surname: ${user.surname}`)
+  }
 }
