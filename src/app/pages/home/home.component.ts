@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UsersComponent } from '../users/users.component';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
@@ -11,7 +11,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   // users data
   usersList: User[] = [];
   // injecting users service + initialization
@@ -19,8 +19,9 @@ export class HomeComponent {
   // Storing data to filter, will contain values to filter
   filteredUsers: User[] = [];
 
-  constructor() {
-    this.usersList = this.usersService.getAllUsers();
+  // before constructor() 
+  async ngOnInit() {
+    this.usersList = await this.usersService.getAllUsers();
     this.filteredUsers = this.usersList;
   }
 

@@ -1,67 +1,37 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  protected usersList: User[] = [
-    {
-      name: 'Jhon',
-      surname: 'Doe',
-      email: 'jhon.doe@email.com',
-      id: '4782938L',
-    },
-    {
-      name: 'Alice',
-      surname: 'Combs',
-      email: 'alice.combs@email.com',
-      id: '4749204T',
-    },
-    {
-      name: 'Grace',
-      surname: 'Hawkins',
-      email: 'grace.hawkins@email.com',
-      id: '5671938K',
-    },
-    {
-      name: 'Wayne',
-      surname: 'Stuart',
-      email: 'wayne.stuart@email.com',
-      id: '9022108P',
-    },
-    {
-      name: 'Juan',
-      surname: 'Spence',
-      email: 'juan.spence@email.com',
-      id: '4321165C',
-    },
-    {
-      name: 'Ronan',
-      surname: 'Orozco',
-      email: 'ronan.orozco@email.com',
-      id: '6738145E',
-    },
-    {
-      name: 'Sylvia',
-      surname: 'Vega',
-      email: 'sylvia.vega@email.com',
-      id: '2031145J',
-    },
-  ];
-
-  getAllUsers(): User[] {
-    return this.usersList;
+  url = 'http://localhost:3000/users';
+  
+  async getAllUsers(): Promise<User[]> {
+    try {
+      return await firstValueFrom(this.http.get<User[]>(this.url)) ?? [];
+    } catch {
+      return [];
+    }
   }
 
-  getUserById(id: string): User | undefined {
-    return this.usersList.find((user) => user.id === id);
+  async getUserById(id: string): Promise<User | undefined> {
+    try {
+      return await firstValueFrom(this.http.get<User>(`${this.url}/${id}`));
+    } catch {
+      return undefined;
+    }
   }
 
-  // In this case we reuse model, other case dto
-  createUser(user: User) { 
-    console.log(`New user: id: ${user.id}, email: ${user.email}, name: ${user.name}, surname: ${user.surname}`)
+  async createUser(user: User): Promise<User> {
+    try {
+      return await firstValueFrom(this.http.post<User>(this.url, user));
+    } catch {
+      throw new Error('Error creating user');
+    }
   }
 }
