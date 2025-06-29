@@ -31,14 +31,9 @@ export class HomeComponent implements OnInit {
       this.filteredUsers = this.usersList;
       return;
     }
-    
-    // Filtering by all properties
-    const searchText = text.toLowerCase();
-    this.filteredUsers = this.usersList.filter(user => 
-      user?.id.toLowerCase().includes(searchText) ||
-      user?.email.toLowerCase().includes(searchText) ||
-      user?.name.toLowerCase().includes(searchText) ||
-      user?.surname.toLowerCase().includes(searchText)
+  
+    this.filteredUsers = this.usersList.filter(
+      (user) => user?.name.toLowerCase().includes(text.toLowerCase())
     );
   }
 }

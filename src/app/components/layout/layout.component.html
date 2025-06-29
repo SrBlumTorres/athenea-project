@@ -1,31 +1,25 @@
 <div class="layout">
-  <!-- Navegación fija -->
-  <nav class="navbar">
+  <nav class="sidebar">
     <div class="nav-brand">
       <h1>Users App</h1>
     </div>
-    
     <ul class="nav-links">
       <li>
-        <a 
-          routerLink="/" 
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           Home
         </a>
       </li>
       <li>
-        <a 
-          routerLink="/new-user" 
-          routerLinkActive="active">
+        <a routerLink="/new-user" routerLinkActive="active">
           New User
         </a>
       </li>
     </ul>
   </nav>
-  
-  <!-- Contenido que cambia -->
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
+
+  <div class="main-content">
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

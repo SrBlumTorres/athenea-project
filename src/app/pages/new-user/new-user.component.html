@@ -1,15 +1,32 @@
-<form [formGroup]="applyForm" (submit)="createUser()">
-  <label for="id">Id</label>
-  <input id="id" type="text" formControlName="id" />
+<!-- user-form.component.html -->
+<div class="form-container">
+  <form [formGroup]="applyForm" (submit)="createUser()">
+    <div class="form-row">
+      <h1>Nou usuari 👨🏽‍💻</h1>
+    </div>
 
-  <label for="email">Email</label>
-  <input id="email" type="email" formControlName="email" />
+    <div class="form-row">
+      <label for="id">Id</label>
+      <input id="id" type="text" formControlName="id" />
+    </div>
 
-  <label for="name">Name</label>
-  <input id="name" type="text" formControlName="name" />
+    <div class="form-row">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+    </div>
 
-  <label for="surname">Surname</label>
-  <input id="surname" type="text" formControlName="surname" />
+    <div class="form-row">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
 
-  <button type="submit" class="primary">Create user</button>
-</form>
+    <div class="form-row">
+      <label for="surname">Surname</label>
+      <input id="surname" type="text" formControlName="surname" />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="primary">Create user</button>
+    </div>
+  </form>
+</div>

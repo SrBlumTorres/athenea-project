@@ -2,3 +2,5 @@
   --primary-color: purple;
   --accent-color: rgb(211, 146, 255);
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
