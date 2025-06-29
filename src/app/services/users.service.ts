@@ -9,16 +9,25 @@ import { firstValueFrom } from 'rxjs';
 export class UsersService {
   constructor(private http: HttpClient) {}
 
+  //! First is necessary run json-server --watch db.json
   url = 'http://localhost:3000/users';
   
   async getAllUsers(): Promise<User[]> {
     try {
-      const users = await firstValueFrom(this.http.get<User[]>(this.url)) ?? [];
-      localStorage.setItem('users', JSON.stringify(users));
-      return users;
+      const serverUsers = await firstValueFrom(this.http.get<User[]>(this.url)) ?? [];
+      
+      // Leer usuario de localStorage si existe
+      const localUser = localStorage.getItem('newUser');
+      if (localUser) {
+        const parsedUser = JSON.parse(localUser);
+        serverUsers.push(parsedUser);
+      }
+      
+      return serverUsers;
     } catch {
-      const saved = localStorage.getItem('users');
-      return saved ? JSON.parse(saved) : [];
+      // Si no hay servidor, solo devolver el de localStorage
+      const localUser = localStorage.getItem('newUser');
+      return localUser ? [JSON.parse(localUser)] : [];
     }
   }
 
@@ -37,12 +46,15 @@ export class UsersService {
   }
 
   async createUser(user: User): Promise<User> {
-    // Crear usuario solo en localStorage
-    const saved = localStorage.getItem('users');
-    const users: User[] = saved ? JSON.parse(saved) : [];
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-    return user;
+    try {
+      // Intentar crear en el servidor
+      const newUser = await firstValueFrom(this.http.post<User>(this.url, user));
+      return newUser;
+    } catch {
+      // Si falla el servidor, guardar en localStorage
+      localStorage.setItem('newUser', JSON.stringify(user));
+      return user;
+    }
   }
 
 }

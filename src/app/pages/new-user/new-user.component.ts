@@ -21,7 +21,7 @@ export class NewUserComponent {
     surname: new FormControl(''),
   });
 
-  createUser() {
+  async createUser() {
     const user = this.applyForm.value as User;
     this.usersService.createUser(user);
   }
