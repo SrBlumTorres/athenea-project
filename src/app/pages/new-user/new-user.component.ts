@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-user',
@@ -13,6 +14,7 @@ import { User } from '../../models/user';
 })
 export class NewUserComponent {
   private usersService = inject(UsersService);
+  private router = inject(Router); // Inyectamos el router
 
   applyForm = new FormGroup({
     id: new FormControl(''),
@@ -23,6 +25,12 @@ export class NewUserComponent {
 
   async createUser() {
     const user = this.applyForm.value as User;
-    this.usersService.createUser(user);
+    await this.usersService.createUser(user);
+
+    // Alert de confirmación
+    alert('usuari creat satisfactòriament! ✅');
+    
+    // Redirect al home
+    this.router.navigate(['/']);
   }
 }
