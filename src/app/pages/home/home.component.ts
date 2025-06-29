@@ -16,8 +16,23 @@ export class HomeComponent {
   usersList: User[] = [];
   // injecting users service + initialization
   usersService: UsersService = inject(UsersService);
+  // Storing data to filter, will contain values to filter
+  filteredUsers: User[] = [];
 
   constructor() {
     this.usersList = this.usersService.getAllUsers();
+    this.filteredUsers = this.usersList;
+  }
+
+  // function to filter in this case for name
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredUsers = this.usersList;
+      return;
+    }
+  
+    this.filteredUsers = this.usersList.filter(
+      (user) => user?.name.toLowerCase().includes(text.toLowerCase())
+    );
   }
 }

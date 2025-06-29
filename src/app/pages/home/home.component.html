@@ -1,9 +1,15 @@
 <section>
   <form>
-    <input type="text" placeholder="Filter by city" />
+    <input
+      type="text"
+      placeholder="Filter by name"
+      #filter
+      (input)="filterResults(filter.value)"
+    />
+    <!-- When users type any, the filter will search automatically-->
     <button class="primary" type="button">Search</button>
   </form>
 </section>
 <section class="results">
-  <app-users *ngFor="let user of usersList" [user]="user"> </app-users>
+  <app-users *ngFor="let user of filteredUsers" [user]="user"> </app-users>
 </section>
