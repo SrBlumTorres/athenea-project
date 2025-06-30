@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  json-server:
+    image: node:20-alpine3.18
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: npx json-server --watch db.json --host 0.0.0.0
+    
+  angular-app:
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - json-server
+    command: ["npm", "run", "start", "--", "--host", "0.0.0.0"]
